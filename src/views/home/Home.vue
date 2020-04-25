@@ -1,5 +1,6 @@
 <template>
   <div id="home">
+    <div class="fill"></div>
     <nav-bar>
       <div slot="center">supermall</div>
     </nav-bar>
@@ -39,6 +40,6 @@ export default {
   }
   #home {
     height: 3100px;
-    background-color: pink;
+    background-color: var(--color-tint);
   }
 </style>

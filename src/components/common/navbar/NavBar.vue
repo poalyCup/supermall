@@ -16,7 +16,7 @@ export default {
 
 <style scoped>
   .nav-bar {
-    background-color: pink;
+    background-color: rgb(251,242,227);
     display: flex;
     height: 44px;
     line-height: 44px;
@@ -29,10 +29,10 @@ export default {
     right: 0;
     z-index: 99;
     box-shadow: 0 1px 2px rgba(100,100,100,0.1);
+    border-radius: 0 0 5px 5px;
   }
   .left, .right {
     width: 60px;
-    background-color: red;
   }
   .center {
     flex: 1;
