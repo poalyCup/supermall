@@ -4,7 +4,7 @@
     <nav-bar>
       <div slot="center">supermall</div>
     </nav-bar>
-
+    <my-swiper :bannerList="bannerList"></my-swiper>
 
 
     <h1>This is an Home page11</h1>
@@ -13,6 +13,7 @@
 
 <script>
 import NavBar from 'components/common/navbar/NavBar'
+import MySwiper from './childComponent/MySwiper'
 import {getMutlidata} from 'network/home'
 
 export default {
@@ -23,7 +24,8 @@ export default {
       }
     },
     components: {
-      NavBar
+      NavBar,
+      MySwiper
     },
     created(){
       getMutlidata().then(res => {
