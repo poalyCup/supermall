@@ -23,10 +23,6 @@ export default {
     text-align: center;
     width: 100%;
     font-size: var(--font-size);
-    position: fixed;
-    top: 0;
-    left: 0;
-    right: 0;
     z-index: 99;
     box-shadow: 0 3px 12px rgba(100,100,100,0.09);
     border-radius: 0 0 5px 5px;
