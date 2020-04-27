@@ -28,7 +28,7 @@ export default {
     left: 0;
     right: 0;
     z-index: 99;
-    box-shadow: 0 1px 2px rgba(100,100,100,0.1);
+    box-shadow: 0 3px 12px rgba(100,100,100,0.09);
     border-radius: 0 0 5px 5px;
   }
   .left, .right {

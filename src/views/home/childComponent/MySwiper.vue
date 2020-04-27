@@ -1,4 +1,5 @@
 <template>
+<!-- 使用v-if 等待数据加载完成再渲染，解决默认最后一张的问题 -->
   <swiper class="swiper" :options="swiperOption" ref="mySwiper" v-if="bannerList.length">
     <swiper-slide class="ss-item" v-for="(item, index) in bannerList" :key="index">
       <a :href="item.link" >
@@ -70,6 +71,6 @@
 
 
  .swiper-pagination{
-   bottom: 0px;
+   bottom: 15px;
  }
 </style>
