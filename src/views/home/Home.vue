@@ -6,8 +6,13 @@
     </nav-bar>
     <my-swiper :bannerList="bannerList"></my-swiper>
     <recommend-view :recommends="recommends"/>
-    <tab-control class="tab-control" :titles="['流行', '新款', '精选']"/>
+    <tab-control class="tab-control" :titles="['流行', '新款', '精选']"
+                  @tabClick="tabClick"/>
+    <goods-list :goodsList="goods[currentType]" />
 
+    <h1>This is an Home page11</h1>
+    <h1>This is an Home page11</h1>
+    <h1>This is an Home page11</h1>
     <h1>This is an Home page11</h1>
   </div>
 </template>
@@ -15,11 +20,12 @@
 <script>
 import NavBar from 'components/common/navbar/NavBar'
 import TabControl from 'components/content/tabControl/TabControl'
+import GoodsList from 'components/content/goodsList/GoodsList'
 
 import MySwiper from './childComponent/MySwiper'
 import RecommendView from './childComponent/RecommendView'
 
-import {getMutlidata} from 'network/home'
+import {getMutlidata, getGoodsList} from 'network/home'
 
 
 export default {
@@ -27,12 +33,19 @@ export default {
     data(){
       return{
         bannerList: [],
-        recommends: []
+        recommends: [],
+        goods:{
+          'pop': { page: 0, list: [] },
+          'new': { page: 0, list: [] },
+          'sell': { page: 0, list: [] }
+        },
+        currentType: 'pop'
       }
     },
     components: {
       NavBar,
       TabControl,
+      GoodsList,
       MySwiper,
       RecommendView
     },
@@ -40,8 +53,41 @@ export default {
       getMutlidata().then(res => {
         this.bannerList = res.data.banner.list
         this.recommends = res.data.recommend.list
-        console.log(res)
+        // console.log(res)
       })
+
+      this.getGoods('pop')
+      this.getGoods('new')
+      this.getGoods('sell')
+    },
+    methods: {
+      /**
+        事件监听相关方法
+       */
+      tabClick(index){
+        switch(index){
+          case 0:
+            this.currentType = 'pop'
+            break
+          case 1:
+            this.currentType = 'new'
+            break
+          case 2: 
+            this.currentType = 'sell'
+            break
+        }
+      },
+
+
+      
+      getGoods(type){
+        const page = this.goods[type].page + 1
+        getGoodsList(type, page).then(res => {
+          // console.log(res)
+          this.goods[type].list.push(...res.data.list)
+          this.goods[type].page ++
+        })
+      }
     }
 }
 </script>
@@ -67,6 +113,7 @@ export default {
     box-shadow: 0 2px 4px rgba(100,100,100,0.09);
     /* sticky 自动根据 top 的值在指定位置将元素 fixed */
     position: sticky;
-    top: 44px;
+    top: 43px;
+    z-index: 99;
   }
 </style>
