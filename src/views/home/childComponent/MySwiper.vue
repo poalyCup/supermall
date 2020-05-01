@@ -52,14 +52,17 @@
 
 <style scoped>
   /* // @import './base.scss'; */
+  .swiper{
+    margin-bottom: 15xp;
+  }
+
   .ss-item{
     width: 100%;
-    height: 200px;
+    height: auto;
     /* background-image: url('http://img1.qunarzz.com/piao/fusion/1805/d4/d41d77b6ba8aca02.jpg_750x200_ac3d9a73.jpg'); */
   }
   
   .ss-item a{
-    line-height: 360px;
     display: block;
     width: 100%;
     height: 100%;

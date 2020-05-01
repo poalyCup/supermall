@@ -4,16 +4,22 @@
     <nav-bar class="home-nav">
       <div slot="center">supermall</div>
     </nav-bar>
-    <my-swiper :bannerList="bannerList"></my-swiper>
-    <recommend-view :recommends="recommends"/>
-    <tab-control class="tab-control" :titles="['流行', '新款', '精选']"
-                  @tabClick="tabClick"/>
-    <goods-list :goodsList="goods[currentType]" />
 
+    <b-scroll class="wapper">
+      <div class="content">
+        <my-swiper :bannerList="bannerList"></my-swiper>
+        <recommend-view :recommends="recommends"/>
+        <tab-control class="tab-control" :titles="['流行', '新款', '精选']"
+                      @tabClick="tabClick"/>
+        <goods-list :goodsList="goods[currentType].list" />
+      </div>
+    </b-scroll>
+    
+
+    <!-- <h1>This is an Home page11</h1>
     <h1>This is an Home page11</h1>
     <h1>This is an Home page11</h1>
-    <h1>This is an Home page11</h1>
-    <h1>This is an Home page11</h1>
+    <h1>This is an Home page11</h1> -->
   </div>
 </template>
 
@@ -21,6 +27,7 @@
 import NavBar from 'components/common/navbar/NavBar'
 import TabControl from 'components/content/tabControl/TabControl'
 import GoodsList from 'components/content/goodsList/GoodsList'
+import BScroll from 'components/common/scroll/BScroll'
 
 import MySwiper from './childComponent/MySwiper'
 import RecommendView from './childComponent/RecommendView'
@@ -46,6 +53,7 @@ export default {
       NavBar,
       TabControl,
       GoodsList,
+      BScroll,
       MySwiper,
       RecommendView
     },
@@ -93,6 +101,12 @@ export default {
 </script>
 
 <style scoped>
+  #home {
+    position: relative;
+    height: 100vh;
+    /* background-color: var(--color-tint); */
+  }
+
   .fill{
     height: 41px;
   }
@@ -104,10 +118,7 @@ export default {
     right: 0; 
   }
 
-  #home {
-    height: 3100px;
-    /* background-color: var(--color-tint); */
-  }
+  
 
   .tab-control{
     box-shadow: 0 2px 4px rgba(100,100,100,0.09);
@@ -115,5 +126,13 @@ export default {
     position: sticky;
     top: 43px;
     z-index: 99;
+  }
+
+  .wrapper{
+    position: absolute;
+    left: 0;
+    right: 0;
+    top: 44px;
+    height: calc(100vh - 93px);
   }
 </style>
