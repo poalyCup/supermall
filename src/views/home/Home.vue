@@ -5,14 +5,16 @@
       <div slot="center">supermall</div>
     </nav-bar>
 
-    <b-scroll class="content">
+    <b-scroll class="content" ref="scroll">
         <my-swiper :bannerList="bannerList"></my-swiper>
         <recommend-view :recommends="recommends"/>
         <tab-control class="tab-control" :titles="['流行', '新款', '精选']"
                       @tabClick="tabClick"/>
         <goods-list :goodsList="goods[currentType].list" />
-      
+        
     </b-scroll>
+
+    <back-top @click.native="backTop"/>
     
 
     <!-- <h1>This is an Home page11</h1>
@@ -27,6 +29,7 @@ import NavBar from 'components/common/navbar/NavBar'
 import TabControl from 'components/content/tabControl/TabControl'
 import GoodsList from 'components/content/goodsList/GoodsList'
 import BScroll from 'components/common/scroll/BScroll'
+import BackTop from 'components/content/backTop/BackTop'
 
 import MySwiper from './childComponent/MySwiper'
 import RecommendView from './childComponent/RecommendView'
@@ -53,6 +56,7 @@ export default {
       TabControl,
       GoodsList,
       BScroll,
+      BackTop,
       MySwiper,
       RecommendView
     },
@@ -84,9 +88,14 @@ export default {
             break
         }
       },
+      backTop(){
+        this.$refs.scroll.backTop(0, 0, 800)
+      },
 
 
-      
+      /*
+      * 网络请求相关方法
+      */
       getGoods(type){
         const page = this.goods[type].page + 1
         getGoodsList(type, page).then(res => {
