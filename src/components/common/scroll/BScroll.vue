@@ -30,4 +30,7 @@ export default {
     background-color: lemonchiffon;
     overflow: hidden;
   } */
+  /* .content{
+    height: 100%;
+  } */
 </style>

@@ -5,14 +5,13 @@
       <div slot="center">supermall</div>
     </nav-bar>
 
-    <b-scroll class="wapper">
-      <div class="content">
+    <b-scroll class="content">
         <my-swiper :bannerList="bannerList"></my-swiper>
         <recommend-view :recommends="recommends"/>
         <tab-control class="tab-control" :titles="['流行', '新款', '精选']"
                       @tabClick="tabClick"/>
         <goods-list :goodsList="goods[currentType].list" />
-      </div>
+      
     </b-scroll>
     
 
@@ -116,6 +115,7 @@ export default {
     top: 0;
     left: 0;
     right: 0; 
+    z-index: 9;
   }
 
   
@@ -123,16 +123,18 @@ export default {
   .tab-control{
     box-shadow: 0 2px 4px rgba(100,100,100,0.09);
     /* sticky 自动根据 top 的值在指定位置将元素 fixed */
-    position: sticky;
-    top: 43px;
-    z-index: 99;
+    /* position: sticky;
+    top: 43px; */
+    z-index: 9;
   }
 
-  .wrapper{
+  .content{
     position: absolute;
+
     left: 0;
     right: 0;
     top: 44px;
-    height: calc(100vh - 93px);
+    bottom: 49px;
+    overflow: hidden;
   }
 </style>
