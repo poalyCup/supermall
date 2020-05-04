@@ -6,7 +6,8 @@
     </nav-bar>
 
     <b-scroll class="content" ref="scroll" 
-              :probeType="3" @scroll="contentScroll">
+              :probeType="3" @scroll="contentScroll"
+              :pullUpLoad="true" @pullUpLoad="loadMore">
         <my-swiper :bannerList="bannerList"></my-swiper>
         <recommend-view :recommends="recommends"/>
         <tab-control class="tab-control" :titles="['流行', '新款', '精选']"
@@ -96,6 +97,9 @@ export default {
       contentScroll(position){
         this.isShowBackTop = (-position.y) > 1000
       },
+      loadMore(){
+        this.getGoods(this.currentType)
+      },
 
 
       /*
@@ -107,6 +111,8 @@ export default {
           // console.log(res)
           this.goods[type].list.push(...res.data.list)
           this.goods[type].page ++
+
+          this.$refs.scroll.finishPull()
         })
       }
     }
