@@ -16,6 +16,12 @@ export default {
       scroll: null
     }
   },
+  props: {
+    probeType: {
+      type: Number,
+      default: 0
+    }
+  },
   methods: {
     backTop(x, y, time = 500){
       this.scroll.scrollTo(x, y, time)
@@ -25,7 +31,15 @@ export default {
   mounted(){
     this.scroll = new BScroll(this.$refs.scroll,{
       click: true,
+      probeType: this.probeType
+    })
 
+    this.scroll.on('scroll', (position) => {
+      // console.log(position.y)
+      // if(-position.y == 500){
+      //   console.log('500')
+      // }
+      this.$emit('scroll', position)
     })
   }
 }

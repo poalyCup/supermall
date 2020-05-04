@@ -5,16 +5,17 @@
       <div slot="center">supermall</div>
     </nav-bar>
 
-    <b-scroll class="content" ref="scroll">
+    <b-scroll class="content" ref="scroll" 
+              :probeType="3" @scroll="contentScroll">
         <my-swiper :bannerList="bannerList"></my-swiper>
         <recommend-view :recommends="recommends"/>
         <tab-control class="tab-control" :titles="['流行', '新款', '精选']"
-                      @tabClick="tabClick"/>
+                      @tabClick="tabClick" />
         <goods-list :goodsList="goods[currentType].list" />
         
     </b-scroll>
 
-    <back-top @click.native="backTop"/>
+    <back-top @click.native="backTop" v-show="isShowBackTop"/>
     
 
     <!-- <h1>This is an Home page11</h1>
@@ -48,7 +49,8 @@ export default {
           'new': { page: 0, list: [] },
           'sell': { page: 0, list: [] }
         },
-        currentType: 'pop'
+        currentType: 'pop',
+        isShowBackTop: false
       }
     },
     components: {
@@ -89,7 +91,10 @@ export default {
         }
       },
       backTop(){
-        this.$refs.scroll.backTop(0, 0, 800)
+        this.$refs.scroll.backTop(0, 30, 800)
+      },
+      contentScroll(position){
+        this.isShowBackTop = (-position.y) > 1000
       },
 
 
