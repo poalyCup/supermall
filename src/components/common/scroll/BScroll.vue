@@ -59,11 +59,10 @@ export default {
 </script>
 
 <style scoped>
-  /* .wrapper{
-    height: 300px;
-    background-color: lemonchiffon;
-    overflow: hidden;
-  } */
+.wrapper{
+  height: calc(100% - 93px) ;
+}
+  
   /* .content{
     height: 100%;
   } */

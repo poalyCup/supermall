@@ -1,6 +1,6 @@
 <template>
   <div class="goods-item">
-    <a :href="item.link">
+    <a>
       <img :src="item.show.img" alt="">
     </a>
     <div class="goods-info">

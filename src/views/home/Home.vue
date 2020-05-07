@@ -80,6 +80,9 @@ export default {
       this.getGoods('new')
       this.getGoods('sell')
     },
+    destroyed(){
+      console.log('destroyed')
+    },
     methods: {
       /**
         事件监听相关方法
@@ -99,6 +102,8 @@ export default {
         //同步两个tabControl 当前选择的索引
         this.$refs.tabControl.currentIndex = index
         this.$refs.tabControl1.currentIndex = index
+
+        
       },
       backTop(){
         this.$refs.scroll.backTop(0, 30, 800)
@@ -141,6 +146,7 @@ export default {
   #home {
     position: relative;
     height: 100vh;
+    margin-bottom: 49px;
     /* background-color: var(--color-tint); */
   }
 
