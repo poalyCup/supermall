@@ -1,8 +1,8 @@
 <template>
   <div id="home">
-    <div class="fill">
+    <!-- <div class="fill"> -->
       
-    </div>
+    <!-- </div> -->
     <nav-bar class="home-nav">
       <div slot="center">supermall</div>
     </nav-bar>

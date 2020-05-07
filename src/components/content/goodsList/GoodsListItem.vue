@@ -1,5 +1,5 @@
 <template>
-  <div class="goods-item">
+  <div class="goods-item" @click="itemClick">
     <a>
       <img :src="item.show.img" alt="">
     </a>
@@ -15,11 +15,30 @@
 <script>
 export default {
   name: 'GoodsListItem',
+  data(){
+    return{
+      iid: null
+    }
+  },
   props: {
     item:{
       type: Object,
       default: null
     }
+  },
+  methods: {
+    itemClick(){
+      // console.log(this.item)
+      this.$router.push({
+        path: '/detail',
+        query: {
+          iid: this.iid
+        }
+      })
+    }
+  },
+  created(){
+    this.iid = this.item.iid
   }
   
 }
