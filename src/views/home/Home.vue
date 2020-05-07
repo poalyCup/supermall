@@ -1,17 +1,21 @@
 <template>
   <div id="home">
-    <div class="fill"></div>
+    <div class="fill">
+      
+    </div>
     <nav-bar class="home-nav">
       <div slot="center">supermall</div>
     </nav-bar>
-
+    <tab-control class="tab-control1" :titles="['流行', '新款', '精选']"
+                      @tabClick="tabClick" ref="tabControl1" 
+                      v-show="isTabControlFixed"/>
     <b-scroll class="content" ref="scroll" 
               :probeType="3" @scroll="contentScroll"
               :pullUpLoad="true" @pullUpLoad="loadMore">
-        <my-swiper :bannerList="bannerList"></my-swiper>
+        <my-swiper :bannerList="bannerList" @imgLoad="getOffsetTop"></my-swiper>
         <recommend-view :recommends="recommends"/>
         <tab-control class="tab-control" :titles="['流行', '新款', '精选']"
-                      @tabClick="tabClick" />
+                      @tabClick="tabClick" ref="tabControl"/>
         <goods-list :goodsList="goods[currentType].list" />
         
     </b-scroll>
@@ -51,7 +55,9 @@ export default {
           'sell': { page: 0, list: [] }
         },
         currentType: 'pop',
-        isShowBackTop: false
+        isShowBackTop: false,
+        offsetTop: 0,
+        isTabControlFixed: false
       }
     },
     components: {
@@ -90,15 +96,27 @@ export default {
             this.currentType = 'sell'
             break
         }
+        //同步两个tabControl 当前选择的索引
+        this.$refs.tabControl.currentIndex = index
+        this.$refs.tabControl1.currentIndex = index
       },
       backTop(){
         this.$refs.scroll.backTop(0, 30, 800)
       },
       contentScroll(position){
+        //判定返回顶部按钮是否显示方法
         this.isShowBackTop = (-position.y) > 1000
+        //判断 第二个tabControl 是否显示方法
+        this.isTabControlFixed = (-position.y) > this.offsetTop
       },
       loadMore(){
         this.getGoods(this.currentType)
+      },
+      getOffsetTop(){
+        //获取 tabControl的offsetTop值
+        //根据该值判断tabControl在什么位置触发吸顶效果
+        this.offsetTop = this.$refs.tabControl.$el.offsetTop
+        console.log(this.offsetTop)
       },
 
 
@@ -138,7 +156,11 @@ export default {
     z-index: 9;
   }
 
-  
+  .tab-control1{
+    margin-top: 3px;
+    position: relative;
+    z-index: 10;
+  }
 
   .tab-control{
     box-shadow: 0 2px 4px rgba(100,100,100,0.09);

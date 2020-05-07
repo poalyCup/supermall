@@ -3,7 +3,7 @@
   <swiper class="swiper" :options="swiperOption" ref="mySwiper" v-if="bannerList.length">
     <swiper-slide class="ss-item" v-for="(item, index) in bannerList" :key="index">
       <a :href="item.link" >
-        <img :src="item.image" alt="">
+        <img :src="item.image" alt="" @load="load()">
       </a>
     </swiper-slide>
     <div class="swiper-pagination" slot="pagination"></div>
@@ -30,6 +30,7 @@
     },
     data() {
       return {
+        isLoad: false,
         swiperOption: {
           initialSlide: 0,
           pagination: {
@@ -44,6 +45,15 @@
 　　　　　　　disableOnInteraction: false
           },
           loop: true
+        }
+      }
+    },
+    methods: {
+      load(){
+        if(!this.isLoad){
+          this.isLoad = !this.isLoad
+          this.$emit('imgLoad')
+          // console.log('111')
         }
       }
     }
