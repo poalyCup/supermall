@@ -3,6 +3,7 @@
     <div class="fill"></div>
     <detail-nav-bar class="detail-nav"/>
     <detail-swiper :topImgs="topImages"></detail-swiper>
+    <detail-base-info :base-info="baseInfo"/>
     Detail
     {{this.$route.query.iid}}
     <button @click="cons">fff</button>
@@ -115,19 +116,23 @@
 <script>
   import DetailNavBar from './childrenComponents/DetailNavBar'
   import DetailSwiper from './childrenComponents/DetailSwiper'
-  import {getDetail} from 'network/detail'
+  import DetailBaseInfo from './childrenComponents/DetailBaseInfo'
+
+  import {getDetail, Goods} from 'network/detail'
 
   export default {
     name: 'Detail',
     components: {
       DetailNavBar,
-      DetailSwiper
+      DetailSwiper,
+      DetailBaseInfo
     },
     data(){
       return{
         iid: null,
         result: null,
-        topImages: []
+        topImages: [],
+        baseInfo: {}
       }
     },
     methods: {
@@ -140,9 +145,10 @@
 
       getDetail(this.iid).then( res => {
         this.result = res.result
-        // console.log(res)
+        this.topImages.push(...res.result.itemInfo.topImages)
+        //基础信息的内容比较混乱，所以使用对象对数据进行包装
+        this.baseInfo = new Goods(res.result.itemInfo, res.result.columns, res.result.shopInfo.services)
 
-        this.topImages.push(...this.result.itemInfo.topImages)
       })
     }
   }
