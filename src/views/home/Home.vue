@@ -1,8 +1,6 @@
 <template>
   <div id="home">
-    <!-- <div class="fill"> -->
-      
-    <!-- </div> -->
+    <div class="fill"></div>
     <nav-bar class="home-nav">
       <div slot="center">supermall</div>
     </nav-bar>
@@ -152,6 +150,7 @@ export default {
 
   .fill{
     height: 41px;
+    
   }
 
   .home-nav{
