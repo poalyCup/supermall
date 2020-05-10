@@ -3,8 +3,12 @@
     <div class="info-title">{{baseInfo.title}}</div>
     <div class="info-price">
       <span class="n-price">{{baseInfo.newPrice}}</span>
-      <span class="o-price">{{baseInfo.oldPrice}}</span>
-      <span class="discount">{{baseInfo.discount}}</span>
+      <span v-if="baseInfo.discount">
+        <span class="o-price">{{baseInfo.oldPrice}}</span>
+        <span class="discount">{{baseInfo.discount}}</span>
+      </span>
+      <!-- <span class="o-price">{{baseInfo.oldPrice}}</span>
+      <span class="discount">{{baseInfo.discount}}</span> -->
     </div>
     <div class="info-other">
       <span>{{baseInfo.columns[0]}}</span>
