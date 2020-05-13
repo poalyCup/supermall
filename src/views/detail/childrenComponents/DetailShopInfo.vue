@@ -53,7 +53,7 @@ export default {
   .shop-info {
     width: 100%;
     padding: 35px 10px;
-    height: 50px;
+    border-bottom: 5px solid #f2f5f8;
   }
   .shop-title{
     text-align: left;
