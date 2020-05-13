@@ -33,6 +33,7 @@ export default {
     font-family: Arial, Helvetica, sans-serif;
     font-size: 14px;
     color: #666;
+    border-bottom: 5px solid #f2f5f8;
   }
   .product-info{
     border-collapse: collapse;
@@ -69,8 +70,6 @@ export default {
     overflow: hidden;
     white-space: nowrap;
     text-overflow: ellipsis;
-  }
-  .size-td:nth-child(1){
   }
 
 </style>

@@ -7,6 +7,7 @@
         <detail-shop-info :shopInfo="shopInfo"/>
         <!-- <detail-image-info :image-info="imageInfo"/> -->
         <!-- <detail-params-info :params-info="paramsInfo"/> -->
+        <detail-comment-info :comment-info="commentInfo"/>
       </scroll>
   </div>
 </template>
@@ -18,6 +19,7 @@
   import DetailShopInfo from './childrenComponents/DetailShopInfo'
   import DetailImageInfo from './childrenComponents/DetailImageInfo'
   import DetailParamsInfo from './childrenComponents/DetailParamsInfo'
+  import DetailCommentInfo from './childrenComponents/DetailCommetnInfo'
 
   import Scroll from 'components/common/scroll/BScroll'
 
@@ -32,6 +34,7 @@
       DetailShopInfo,
       DetailImageInfo,
       DetailParamsInfo,
+      DetailCommentInfo,
       Scroll
     },
     data(){
@@ -42,7 +45,8 @@
         baseInfo: {},
         shopInfo: {},
         imageInfo: {},
-        paramsInfo: {}
+        paramsInfo: {},
+        commentInfo: {}
       }
     },
     methods: {
@@ -64,6 +68,9 @@
         this.imageInfo = res.result.detailInfo
 
         this.paramsInfo = res.result.itemParams
+
+        //只取一条作展示
+        this.commentInfo = res.result.rate.list[0]
       })
     }
   }
