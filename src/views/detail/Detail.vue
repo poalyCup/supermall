@@ -50,14 +50,10 @@
       }
     },
     methods: {
-      cons(){
-        console.log(this.iid)
-      }
-    },
-    created(){
-      this.iid = this.$route.query.iid
+      _getDetailData(){
+        this.iid = this.$route.query.iid
 
-      getDetail(this.iid).then( res => {
+        getDetail(this.iid).then( res => {
         this.result = res.result
         this.topImages.push(...res.result.itemInfo.topImages)
         //基础信息的内容比较混乱，所以使用对象对数据进行包装
@@ -72,6 +68,10 @@
         //只取一条作展示
         this.commentInfo = res.result.rate.list[0]
       })
+      }
+    },
+    created(){
+      this._getDetailData()
     }
   }
 </script>
