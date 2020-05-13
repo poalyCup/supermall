@@ -1,5 +1,5 @@
 <template>
-  <div class="image-info">
+  <div class="image-info" v-show="Object.keys(imageInfo).length !== 0">
     <div class="info-desc">
       <div class="desc-start"></div>
       <div class="desc-text">{{imageInfo.desc}}</div>
