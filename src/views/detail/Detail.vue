@@ -5,7 +5,8 @@
         <detail-swiper :topImgs="topImages"></detail-swiper>
         <detail-base-info :base-info="baseInfo"/>
         <detail-shop-info :shopInfo="shopInfo"/>
-        <detail-image-info :image-info="imageInfo"/>
+        <!-- <detail-image-info :image-info="imageInfo"/> -->
+        <!-- <detail-params-info :params-info="paramsInfo"/> -->
       </scroll>
   </div>
 </template>
@@ -16,6 +17,7 @@
   import DetailBaseInfo from './childrenComponents/DetailBaseInfo'
   import DetailShopInfo from './childrenComponents/DetailShopInfo'
   import DetailImageInfo from './childrenComponents/DetailImageInfo'
+  import DetailParamsInfo from './childrenComponents/DetailParamsInfo'
 
   import Scroll from 'components/common/scroll/BScroll'
 
@@ -29,6 +31,7 @@
       DetailBaseInfo,
       DetailShopInfo,
       DetailImageInfo,
+      DetailParamsInfo,
       Scroll
     },
     data(){
@@ -38,7 +41,8 @@
         topImages: [],
         baseInfo: {},
         shopInfo: {},
-        imageInfo: {}
+        imageInfo: {},
+        paramsInfo: {}
       }
     },
     methods: {
@@ -58,6 +62,8 @@
         this.shopInfo = res.result.shopInfo
 
         this.imageInfo = res.result.detailInfo
+
+        this.paramsInfo = res.result.itemParams
       })
     }
   }
