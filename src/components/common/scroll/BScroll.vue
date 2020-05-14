@@ -33,6 +33,9 @@ export default {
     finishPull(){
       this.scroll.finishPullUp()
       this.scroll.refresh()
+    },
+    refreshin(){
+      this.scroll.refresh()
     }
 
   },

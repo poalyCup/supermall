@@ -108,7 +108,7 @@ export default {
   }
   /* census 右侧内容 */
   .census-right table{
-    margin-left: 31px;
+    margin: 0 auto;
     font-size: 14px;
     text-align: left;
     border-collapse: separate;

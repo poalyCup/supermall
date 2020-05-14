@@ -8,7 +8,7 @@
     <div class="info-image">
       <span>{{imageInfo.detailImage[0].key}}</span>
       <div v-for="(item, index) in imageInfo.detailImage[0].list" :key="index">
-        <img :src="item" alt="">
+        <img :src="item" alt="" @load="imageLoad">
       </div>
     </div>
   </div>
@@ -17,9 +17,24 @@
 <script>
 export default {
   name: 'DetailImageInfo',
+  data(){
+    return {
+      imgCount: 0
+    }
+  },
   props: {
     imageInfo: {
       type: Object
+    }
+  },
+  methods: {
+    imageLoad(){
+      this.imgCount++
+      // console.log('11111')
+      // console.log(this.imageInfo.detailImage[0].list.length)
+      if(this.imgCount == this.imageInfo.detailImage[0].list.length){
+        this.$emit('imageInfoLoad')
+      }
     }
   }
 }
