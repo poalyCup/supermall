@@ -1,5 +1,5 @@
 <template>
-  <div class="comment-info" v-show="Object.keys(commentInfo).length !== 0">
+  <div class="comment-info" v-if="Object.keys(commentInfo).length !== 0">
     <div class="info-header">
       <div class="header-title">用户评论</div>
       <div class="header-more">更多<i class="arrow-right"></i></div>
@@ -29,7 +29,8 @@ export default {
   name: 'DetailCommentInfo',
   props: {
     commentInfo: {
-      type: Object
+      type: Object,
+      default: {}
     }
   },
   filters:{

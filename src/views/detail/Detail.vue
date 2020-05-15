@@ -74,24 +74,24 @@
       }
     },
     created(){
-      // this._getDetailData()
-      this.iid = this.$route.query.iid
-        // this.iid = iid
-        getDetail(this.iid).then( res => {
-          this.result = res.result
-          this.topImages.push(...res.result.itemInfo.topImages)
-          //基础信息的内容比较混乱，所以使用对象对数据进行包装
-          this.baseInfo = new Goods(res.result.itemInfo, res.result.columns, res.result.shopInfo.services)
+      this._getDetailData()
+      // this.iid = this.$route.query.iid
+      //   // this.iid = iid
+      //   getDetail(this.iid).then( res => {
+      //     this.result = res.result
+      //     this.topImages.push(...res.result.itemInfo.topImages)
+      //     //基础信息的内容比较混乱，所以使用对象对数据进行包装
+      //     this.baseInfo = new Goods(res.result.itemInfo, res.result.columns, res.result.shopInfo.services)
 
-          this.shopInfo = res.result.shopInfo
+      //     this.shopInfo = res.result.shopInfo
 
-          this.imageInfo = res.result.detailInfo
+      //     this.imageInfo = res.result.detailInfo
 
-          this.paramsInfo = res.result.itemParams
+      //     this.paramsInfo = res.result.itemParams
 
-          //只取一条作展示
-          this.commentInfo = res.result.rate.list[0]
-        })
+      //     //只取一条作展示
+      //     this.commentInfo = res.result.rate.list[0]
+      //   })
     }
   }
 </script>

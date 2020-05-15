@@ -1,5 +1,5 @@
 <template>
-  <div class="image-info" v-show="Object.keys(imageInfo).length !== 0">
+  <div class="image-info" v-if="Object.keys(imageInfo).length !== 0">
     <div class="info-desc">
       <div class="desc-start"></div>
       <div class="desc-text">{{imageInfo.desc}}</div>
@@ -24,7 +24,8 @@ export default {
   },
   props: {
     imageInfo: {
-      type: Object
+      type: Object,
+      default: {}
     }
   },
   methods: {
@@ -34,6 +35,7 @@ export default {
       // console.log(this.imageInfo.detailImage[0].list.length)
       if(this.imgCount == this.imageInfo.detailImage[0].list.length){
         this.$emit('imageInfoLoad')
+        console.log(this.imgCount)
       }
     }
   }
