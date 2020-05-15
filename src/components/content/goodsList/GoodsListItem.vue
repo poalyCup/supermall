@@ -1,7 +1,7 @@
 <template>
   <div class="goods-item" @click="itemClick">
     <a>
-      <img :src="item.show.img" alt="">
+      <img :src="showImage" alt="">
     </a>
     <div class="goods-info">
       <p>{{item.title}}</p>
@@ -35,6 +35,11 @@ export default {
           iid: this.iid
         }
       })
+    }
+  },
+  computed: {
+    showImage() {
+      return this.item.image || this.item.show.img
     }
   },
   created(){

@@ -1,14 +1,16 @@
 <template>
   <div id="detail">
-    <detail-nav-bar class="detail-nav"/>
-    <scroll class="content" ref="detailScroll">
+    <detail-nav-bar class="detail-nav" :current-index="currentIndex" @titleClick="navClick"/>
+    <detail-scroll class="content" ref="dScroll" 
+                   :probeType="3" @scroll="detailScroll">
         <detail-swiper :topImgs="topImages"></detail-swiper>
         <detail-base-info :base-info="baseInfo"/>
         <detail-shop-info :shopInfo="shopInfo"/>
-        <detail-image-info :image-info="imageInfo" @image-info-load="imageInfoLoad"/>
-        <detail-params-info :params-info="paramsInfo"/>
-        <detail-comment-info :comment-info="commentInfo"/>
-      </scroll>
+        <detail-image-info :image-info="imageInfo" @imageInfoLoad="imageInfoLoad"/>
+        <detail-params-info ref="params" :params-info="paramsInfo"/>
+        <detail-comment-info ref="comment" :comment-info="commentInfo"/>
+        <goods-list ref="goods" :goods-list="recommendList" />
+      </detail-scroll>
   </div>
 </template>
 
@@ -21,9 +23,10 @@
   import DetailParamsInfo from './childrenComponents/DetailParamsInfo'
   import DetailCommentInfo from './childrenComponents/DetailCommetnInfo'
 
-  import Scroll from 'components/common/scroll/BScroll'
+  import DetailScroll from 'components/common/scroll/BScroll'
+  import GoodsList from 'components/content/goodsList/GoodsList'
 
-  import {getDetail, Goods} from 'network/detail'
+  import {getDetail, Goods, getRecommend} from 'network/detail'
 
   export default {
     name: 'Detail',
@@ -35,23 +38,52 @@
       DetailImageInfo,
       DetailParamsInfo,
       DetailCommentInfo,
-      Scroll
+      DetailScroll,
+      GoodsList
     },
     data(){
       return{
         iid: null,
+        currentIndex: 0,
         result: null,
         topImages: [],
         baseInfo: {},
         shopInfo: {},
         imageInfo: {},
         paramsInfo: {},
-        commentInfo: {}
+        commentInfo: {},
+        recommendList: [],
+        themeTops:null
       }
     },
     methods: {
       imageInfoLoad(){
-        this.$refs.detailScroll.refreshin()
+        //图片加载完成时，进行scroll的刷新以及获取各主题的offsetTop
+        this.$refs.dScroll.refreshin()
+        this._getThemeOffsetTop()
+      },
+      navClick(index){
+        this.currentIndex = index
+        this.$refs.dScroll.scrollToo(-(this.themeTops[index] - 50), 500)
+      },
+      detailScroll(position){
+        const positionY = -position.y
+        const length = this.themeTops.length
+        for(let i = 0; i < length-1;  i++){
+          if((this.currentIndex !== i) && (positionY >= this.themeTops[i] && positionY < this.themeTops[0])){
+            this.currentIndex = i
+            break
+          }
+        }
+      },
+      _getThemeOffsetTop(){
+        //各个主题的offsetTop获取方法
+        this.themeTops = []
+        this.themeTops.push(0)
+        this.themeTops.push(this.$refs.params.$el.offsetTop)
+        this.themeTops.push(this.$refs.comment.$el.offsetTop)
+        this.themeTops.push(this.$refs.goods.$el.offsetTop)
+        this.themeTops.push(Number.MAX_VALUE)
       },
       _getDetailData(){
         const iid = this.$route.query.iid
@@ -61,20 +93,23 @@
           this.topImages.push(...res.result.itemInfo.topImages)
           //基础信息的内容比较混乱，所以使用对象对数据进行包装
           this.baseInfo = new Goods(res.result.itemInfo, res.result.columns, res.result.shopInfo.services)
-
+          //获取店铺信息
           this.shopInfo = res.result.shopInfo
-
+          //获取商品详情图片
           this.imageInfo = res.result.detailInfo
-
+          //获取商品参数
           this.paramsInfo = res.result.itemParams
-
-          //只取一条作展示
+          //获取商品评论，只取一条作展示，
           this.commentInfo = res.result.rate.list[0]
         })
       }
     },
     created(){
       this._getDetailData()
+      
+      getRecommend().then(res => {
+        this.recommendList = res.data.list
+      })
       // this.iid = this.$route.query.iid
       //   // this.iid = iid
       //   getDetail(this.iid).then( res => {
@@ -82,13 +117,9 @@
       //     this.topImages.push(...res.result.itemInfo.topImages)
       //     //基础信息的内容比较混乱，所以使用对象对数据进行包装
       //     this.baseInfo = new Goods(res.result.itemInfo, res.result.columns, res.result.shopInfo.services)
-
       //     this.shopInfo = res.result.shopInfo
-
       //     this.imageInfo = res.result.detailInfo
-
       //     this.paramsInfo = res.result.itemParams
-
       //     //只取一条作展示
       //     this.commentInfo = res.result.rate.list[0]
       //   })
@@ -103,14 +134,10 @@
     z-index: 9;
     background-color: #fff;
   }
+
   .fill{
     height: 41px;
   }
-
-  /* .detail-nav{
-    position: relative;
-    z-index: 9; 
-  } */
 
   .content{
     height: calc(100% - 44px);

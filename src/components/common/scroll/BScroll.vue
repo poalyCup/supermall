@@ -36,6 +36,9 @@ export default {
     },
     refreshin(){
       this.scroll.refresh()
+    },
+    scrollToo(y, time=500){
+      this.scroll.scrollTo(0, y, time)
     }
 
   },

@@ -9,6 +9,12 @@ export function getDetail(iid){
   })
 }
 
+export function getRecommend(){
+  return request({
+    url: '/recommend'
+  })
+}
+
 //基础信息的内容比较混乱，所以使用对象对数据进行包装
 export class Goods {
   constructor(itemInfo, columns, services) {
