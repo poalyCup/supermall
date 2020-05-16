@@ -11,6 +11,7 @@
         <detail-comment-info ref="comment" :comment-info="commentInfo"/>
         <goods-list ref="goods" :goods-list="recommendList" />
       </detail-scroll>
+      <detail-bottom-bar />
   </div>
 </template>
 
@@ -22,6 +23,7 @@
   import DetailImageInfo from './childrenComponents/DetailImageInfo'
   import DetailParamsInfo from './childrenComponents/DetailParamsInfo'
   import DetailCommentInfo from './childrenComponents/DetailCommetnInfo'
+  import DetailBottomBar from './childrenComponents/DetailBottomBar'
 
   import DetailScroll from 'components/common/scroll/BScroll'
   import GoodsList from 'components/content/goodsList/GoodsList'
@@ -38,6 +40,7 @@
       DetailImageInfo,
       DetailParamsInfo,
       DetailCommentInfo,
+      DetailBottomBar,
       DetailScroll,
       GoodsList
     },
@@ -140,7 +143,7 @@
   }
 
   .content{
-    height: calc(100% - 44px);
+    height: calc(100% - 44px - 49px);
     overflow: hidden;
   }
 </style>
