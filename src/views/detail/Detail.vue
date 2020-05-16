@@ -11,7 +11,7 @@
         <detail-comment-info ref="comment" :comment-info="commentInfo"/>
         <goods-list ref="goods" :goods-list="recommendList" />
       </detail-scroll>
-      <detail-bottom-bar />
+      <detail-bottom-bar @addToCart="addToCart"/>
   </div>
 </template>
 
@@ -88,6 +88,20 @@
         this.themeTops.push(this.$refs.goods.$el.offsetTop)
         this.themeTops.push(Number.MAX_VALUE)
       },
+      addToCart(){
+        //将商品加入到VueX中，方便购物车页面读取数据
+        const product = {}
+        product.iid = this.iid
+        product.imageUrl = this.topImages[0]
+        product.desc = this.imageInfo.desc
+        product.title = this.baseInfo.title
+        product.price = this.baseInfo.nowPrice
+        this.$store.commit('addProductToCart', product)
+      },
+
+
+
+      //网络请求
       _getDetailData(){
         const iid = this.$route.query.iid
         this.iid = iid
