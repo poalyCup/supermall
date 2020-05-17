@@ -3,7 +3,7 @@
     <nav-bar>
       <div slot="center">购物车({{ cartLength }})</div>
     </nav-bar>
-    <cart-scroll class="content">
+    <cart-scroll class="content" ref="cartScroll">
       <cart-list :cart-list="getCartList"/>
     </cart-scroll>
 
@@ -32,6 +32,9 @@ export default {
       getCartList(){
         return this.$store.getters.getList
       }
+    },
+    activated(){
+      this.$refs.cartScroll.refreshin()
     }
 }
 </script>

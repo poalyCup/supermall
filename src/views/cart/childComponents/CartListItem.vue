@@ -6,6 +6,10 @@
     <div class="item-info">
       <p class="info-title">{{item.title}}</p>
       <p class="info-desc">{{item.desc}}</p>
+      <div class="info-bottom">
+        <div class="item-price left">¥{{item.price}}</div>
+        <div class="item-count right">x{{item.count}}</div>
+      </div>
     </div>
   </div>
 </template>
