@@ -24,39 +24,59 @@ export default {
 <style scoped>
   .cart-list-item{
     font-family: Arial, Helvetica, sans-serif;
-    font-size: 14px;
-    height: 120px;
-    padding: 5px;
     width: 100%;
+    padding: 5px;
     display: flex;
   }
-  .item-img, .item-info{
+
+  .item-selector {
+    width: 14%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+
+  .info-title, .info-desc {
     overflow: hidden;
     white-space: nowrap;
     text-overflow: ellipsis;
   }
-  .item-img{
-    width: 80px;
+
+  .item-img {
     padding: 5px;
+    /*border: 1px solid #ccc;*/
   }
-  .item-img img{
-    display: block;
+
+  .item-img img {
+    width: 80px;
     height: 100px;
+    display: block;
     border-radius: 5px;
   }
-  .item-info{
-    padding: 5px 10px;
-    /* 用相对布局解决flex布局下不等分需要设置宽度的问题 */
-    position: relative;
-  }
-  .item-info p{
-    text-overflow: ellipsis;
-  }
-  .info-title{
-    color: #333;
+
+  .item-info {
     font-size: 17px;
-    font-weight: 500;
+    color: #333;
+    padding: 5px 10px;
+    position: relative;
+    overflow: hidden;
   }
-  .info-desc{
+
+  .item-info .info-desc {
+    font-size: 14px;
+    color: #666;
+    margin-top: 15px;
+  }
+
+  .info-bottom {
+    margin-top: 10px;
+    position: absolute;
+    bottom: 10px;
+    left: 10px;
+    right: 10px;
+  }
+
+  .info-bottom .item-price {
+    color: orangered;
   }
 </style>
