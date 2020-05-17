@@ -1,5 +1,6 @@
 <template>
   <div class="cart-list-item">
+    <check-button class="item-selector" @click.native="checkClick" :value="item.checked" />
     <div class="item-img">
       <img :src="item.imageUrl" alt="">
     </div>
@@ -15,11 +16,23 @@
 </template>
 
 <script>
+import CheckButton from './CheckButton'
+
 export default {
   name: 'CartListItem',
+  components: {
+    CheckButton
+  },
   props: {
     item: {
       type: Object
+    }
+  },
+  methods: {
+    checkClick(){
+      console.log(this.item.iid)
+      this.$store.commit('changeChecked', this.item.iid)
+      // this.item.checked = !this.item.checked
     }
   }
 }
