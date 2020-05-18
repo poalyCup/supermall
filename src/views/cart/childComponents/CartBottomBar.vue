@@ -1,6 +1,6 @@
 <template>
   <div class="bottom-check">
-    <check-button class="selector-all" />
+    <check-button class="selector-all" @checkBtnClick="changeAllSelectState" :value="isAllSelece"/>
     <div class="bottom-r">
       <span class="all">全选</span>
       <span>合计:￥{{ totalPrice }}</span>
@@ -16,6 +16,11 @@ import CheckButton from './CheckButton'
     name: 'CartBottomBar',
     components: {
       CheckButton
+    },
+    methods: {
+      changeAllSelectState(){
+        this.$store.commit('changeAllChecked')
+      }
     },
     computed: {
       totalPrice:function(){
@@ -33,6 +38,15 @@ import CheckButton from './CheckButton'
           return preValue + item.count
         }, 0)
         // return this.$store.state.cartList.length
+      },
+      isAllSelece(){
+        const cartList = this.$store.getters.getList
+        if(cartList.length == 0) return false
+        if(cartList.find(item => !item.checked)){
+          return false
+        }
+
+        return true
       }
     }
   }

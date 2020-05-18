@@ -34,6 +34,27 @@ export default new Vuex.Store({
           item.checked = !item.checked
         }
       })
+    },
+    changeAllChecked(state){
+      //获取未选中的商品
+      const isSelectAll = state.cartList.find(item => !item.checked)
+
+      if(isSelectAll){
+        //如果有未选中的  ，全部设置为选中状态
+        state.cartList.forEach(item => {
+          item.checked = true
+        })
+      }else{
+        //如果全部都为选中状态， 全部设置为 未选中状态
+        state.cartList.forEach(item => {
+          item.checked = false
+        })
+      }
+      // state.cartList.forEach(item => {
+      //   if(item.checked){
+      //     item.checked = !item.checked
+      //   }
+      // })
     }
   },
   actions: {
