@@ -1,6 +1,6 @@
 <template>
   <div class="cart-list-item">
-    <check-button class="item-selector" @click.native="checkClick" :value="item.checked" />
+    <check-button class="item-selector" @checkBtnClick="checkClick" :value="item.checked" />
     <div class="item-img">
       <img :src="item.imageUrl" alt="">
     </div>

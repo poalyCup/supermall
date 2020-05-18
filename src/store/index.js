@@ -23,11 +23,17 @@ export default new Vuex.Store({
       }
     },
     changeChecked(state, iid){
-      const findProduct = state.cartList.find(item => item.iid = iid)
-      console.log(findProduct)
-      if(findProduct){
-        findProduct.checked = !findProduct.checked
-      }
+      // const findProduct = state.cartList.find(item => item.iid = iid)
+      // console.log(findProduct)
+      // if(findProduct){
+      //   findProduct.checked = !findProduct.checked
+      // }
+      console.log('store changeChecked')
+      state.cartList.forEach(item => {
+        if(item.iid == iid){
+          item.checked = !item.checked
+        }
+      })
     }
   },
   actions: {
@@ -35,7 +41,8 @@ export default new Vuex.Store({
   getters: {
     getList(state){
       return state.cartList
-    }
+    },
+    
   },
   modules: {
   }
