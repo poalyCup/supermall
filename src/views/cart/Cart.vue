@@ -6,7 +6,8 @@
     <cart-scroll class="content" ref="cartScroll">
       <cart-list :cart-list="getCartList"/>
     </cart-scroll>
-    <cart-bottom-bar />
+    <cart-bottom-bar @noShopSelect="showToastMessage"/>
+    <toast ref="cartToast"/> 
   </div>
 </template>
 
@@ -16,6 +17,7 @@ import CartBottomBar from './childComponents/CartBottomBar'
 
 import NavBar from 'components/common/navbar/NavBar'
 import CartScroll from 'components/common/scroll/BScroll'
+import Toast from 'components/common/toast/Toast'
 
 
 
@@ -25,7 +27,8 @@ export default {
       CartList,
       CartBottomBar,
       NavBar,
-      CartScroll
+      CartScroll,
+      Toast
     },
     computed:{
       cartLength(){
@@ -33,6 +36,11 @@ export default {
       },
       getCartList(){
         return this.$store.getters.getList
+      }
+    },
+    methods: {
+      showToastMessage(){
+        this.$refs.cartToast.show('请选择需要购买的商品')
       }
     },
     activated(){

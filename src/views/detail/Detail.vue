@@ -12,6 +12,7 @@
         <goods-list ref="goods" :goods-list="recommendList" />
       </detail-scroll>
       <detail-bottom-bar @addToCart="addToCart"/>
+      <toast ref="toast"/>
   </div>
 </template>
 
@@ -27,6 +28,7 @@
 
   import DetailScroll from 'components/common/scroll/BScroll'
   import GoodsList from 'components/content/goodsList/GoodsList'
+  import Toast from 'components/common/toast/Toast'
 
   import {getDetail, Goods, getRecommend} from 'network/detail'
 
@@ -42,7 +44,8 @@
       DetailCommentInfo,
       DetailBottomBar,
       DetailScroll,
-      GoodsList
+      GoodsList,
+      Toast
     },
     data(){
       return{
@@ -98,7 +101,7 @@
         product.price = this.baseInfo.nowPrice
         this.$store.commit('addProductToCart', product)
         setTimeout(()=>{
-          this.$toast.show("加入购物车成功!")
+          this.$refs.toast.show("加入购物车成功!")
         },200)
       },
 

@@ -8,7 +8,7 @@ import Toast from 'components/common/toast'
 Vue.use(VueAwesomeSwiper)
 Vue.config.productionTip = false
 
-Vue.use(Toast)
+// Vue.use(Toast)
 
 new Vue({
   router,

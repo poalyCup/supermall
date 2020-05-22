@@ -1,10 +1,10 @@
 <template>
   <div class="bottom-check">
-    <check-button class="selector-all" @checkBtnClick="changeAllSelectState" :value="isAllSelece"/>
+    <check-button class="selector-all" @checkBtnClick="changeAllSelectState" :value="isAllSelect"/>
     <div class="bottom-r">
       <span class="all">全选</span>
       <span>合计:￥{{ totalPrice }}</span>
-      <span class="settlement">结算({{ settlementLength }})</span>
+      <span class="settlement" @click="goBuys">结算({{ settlementLength }})</span>
     </div>
   </div>
 </template>
@@ -16,11 +16,6 @@ import CheckButton from './CheckButton'
     name: 'CartBottomBar',
     components: {
       CheckButton
-    },
-    methods: {
-      changeAllSelectState(){
-        this.$store.commit('changeAllChecked')
-      }
     },
     computed: {
       totalPrice:function(){
@@ -39,7 +34,7 @@ import CheckButton from './CheckButton'
         }, 0)
         // return this.$store.state.cartList.length
       },
-      isAllSelece(){
+      isAllSelect(){
         const cartList = this.$store.getters.getList
         if(cartList.length == 0) return false
         if(cartList.find(item => !item.checked)){
@@ -47,6 +42,16 @@ import CheckButton from './CheckButton'
         }
 
         return true
+      }
+    },
+    methods: {
+      changeAllSelectState(){
+        this.$store.commit('changeAllChecked')
+      },
+      goBuys(){
+        if(!this.isAllSelect){
+          this.$emit('noShopSelect')
+        }
       }
     }
   }
