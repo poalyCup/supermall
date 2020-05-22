@@ -97,6 +97,9 @@
         product.title = this.baseInfo.title
         product.price = this.baseInfo.nowPrice
         this.$store.commit('addProductToCart', product)
+        setTimeout(()=>{
+          this.$toast.show("加入购物车成功!")
+        },200)
       },
 
 
