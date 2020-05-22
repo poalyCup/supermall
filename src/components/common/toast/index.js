@@ -15,7 +15,7 @@ obj.install = function(Vue){
   document.body.appendChild(toast.$el)
 
 
-  Vue.prototype.$toast = Toast;
+  Vue.prototype.$toast = toast;
 }
 
 
