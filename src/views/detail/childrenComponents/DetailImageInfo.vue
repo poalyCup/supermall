@@ -35,7 +35,7 @@ export default {
       // console.log(this.imageInfo.detailImage[0].list.length)
       if(this.imgCount == this.imageInfo.detailImage[0].list.length){
         this.$emit('imageInfoLoad')
-        console.log(this.imgCount)
+        // console.log(this.imgCount)
       }
     }
   }

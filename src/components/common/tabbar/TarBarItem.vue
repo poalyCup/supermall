@@ -1,8 +1,8 @@
 <template>
-    <div class="tab-bar-item">
+    <div class="tab-bar-item" @click="itemClick">
       <!-- <img src="../../assets/img/tabbar/home.svg"/>
       <div>首页</div> -->
-      <div v-if="!isActive" @click="itemClick"><slot name="item-icon"></slot></div>
+      <div v-if="!isActive" ><slot name="item-icon"></slot></div>
       <div v-else><slot name="item-icon-active"></slot></div>
       <div :class="{active: isActive}"><slot name="item-text"></slot></div>
     </div>

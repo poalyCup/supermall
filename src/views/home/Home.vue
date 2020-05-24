@@ -119,7 +119,7 @@ export default {
         //获取 tabControl的offsetTop值
         //根据该值判断tabControl在什么位置触发吸顶效果
         this.offsetTop = this.$refs.tabControl.$el.offsetTop
-        console.log(this.offsetTop)
+        // console.log(this.offsetTop)
       },
 
 

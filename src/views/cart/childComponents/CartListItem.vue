@@ -30,7 +30,7 @@ export default {
   },
   methods: {
     checkClick(){
-      console.log(this.item.iid)
+      // console.log(this.item.iid)
       this.$store.commit('changeChecked', this.item.iid)
       // this.item.checked = !this.item.checked
     }

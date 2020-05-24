@@ -28,7 +28,7 @@ export default new Vuex.Store({
       // if(findProduct){
       //   findProduct.checked = !findProduct.checked
       // }
-      console.log('store changeChecked')
+      // console.log('store changeChecked')
       state.cartList.forEach(item => {
         if(item.iid == iid){
           item.checked = !item.checked
