@@ -64,10 +64,23 @@
 
 <script>
 import BScroll from 'components/common/scroll/BScroll'
+
+import {getCategory} from 'network/category.js'
 export default {
     name: 'Category',
+    data(){
+      return {
+        category: {}
+      }
+    },
     components:{
       BScroll
+    },
+    created(){
+      getCategory().then(res=>{
+        this.category = res.data.category
+        console.log(res.data)
+      })
     }
 }
 </script>
