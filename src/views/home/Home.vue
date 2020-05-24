@@ -2,7 +2,7 @@
   <div id="home">
     <div class="fill"></div>
     <nav-bar class="home-nav">
-      <div slot="center">supermall</div>
+      <div slot="center">大马猴商城</div>
     </nav-bar>
     <tab-control class="tab-control1" :titles="['流行', '新款', '精选']"
                       @tabClick="tabClick" ref="tabControl1" 
@@ -145,6 +145,7 @@ export default {
     position: relative;
     height: 100vh;
     margin-bottom: 49px;
+    font-family: Arial, Helvetica, sans-serif;
     /* background-color: var(--color-tint); */
   }
 
