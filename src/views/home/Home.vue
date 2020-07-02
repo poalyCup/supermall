@@ -4,6 +4,9 @@
     <nav-bar class="home-nav">
       <div slot="center">大马猴商城</div>
     </nav-bar>
+    <div v-if="!bannerList.length" class="net-err">
+      <div>你的网络裂开啦。。。。。</div>
+    </div>
     <tab-control class="tab-control1" :titles="['流行', '新款', '精选']"
                       @tabClick="tabClick" ref="tabControl1" 
                       v-show="isTabControlFixed"/>
@@ -134,6 +137,8 @@ export default {
           this.goods[type].page ++
 
           this.$refs.scroll.finishPull()
+        }).catch(err=>{
+          console.log(err)
         })
       }
     }
@@ -151,7 +156,19 @@ export default {
 
   .fill{
     height: 41px;
-    
+  }
+  .net-err{
+    display: flex;
+    width: 100%;
+    height: calc(100vh - 94px);
+    position: relative;
+    z-index: 10;
+    background-color: #fff;
+    justify-content: center;
+    align-items: center;
+  }
+  .net-err div{
+    height: 100px;
   }
 
   .home-nav{

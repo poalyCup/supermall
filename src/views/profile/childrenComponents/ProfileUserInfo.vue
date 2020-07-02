@@ -8,6 +8,7 @@
         <div>登录/注册</div>
         <div class="phone"><img src="~assets/img/profile/phone.svg" />绑定手机号</div>
       </div>
+      <div class="header-more"><i class="arrow-right"></i></div>
   </div>
 </template>
 
@@ -46,5 +47,22 @@ export default {
   .phone img{
     width: 15px;
     height: 12px;
+  }
+
+  .header-more{
+    float: right;
+    padding-right: 5px;
+    line-height: 80px;
+  }
+  .arrow-right{
+    border-top: 1px solid #999;
+    border-left: 1px solid #999;
+    width: 9px;
+    height: 9px;
+    background-color: transparent;
+    -webkit-transform: rotate(135deg);
+    transform: rotate(135deg);
+    display: inline-block;
+    margin-left: .1rem;
   }
 </style>
