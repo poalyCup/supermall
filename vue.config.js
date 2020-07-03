@@ -10,5 +10,8 @@ module.exports = {
         'store': '@/store'
       }
     }
-  }
+  },
+  publicPath: './',
+
+  assetsDir: 'public'
 }

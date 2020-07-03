@@ -2,7 +2,7 @@
   <div class="cart">
     <nav-bar>
       <div slot="center">购物车({{ cartLength }})
-        <img src="~assets/img/loading.svg">
+        <!-- <img src="~assets/img/loading.svg"> -->
       </div>
     </nav-bar>
     <cart-scroll class="content" ref="cartScroll">

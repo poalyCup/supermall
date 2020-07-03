@@ -34,6 +34,7 @@ import BScroll from 'components/common/scroll/BScroll'
       menuItemClick(index){
         if(index === this.currentIndex) return
         this.currentIndex = index
+        this.$emit('menuClick', index)
       }
     }
   }
@@ -42,7 +43,7 @@ import BScroll from 'components/common/scroll/BScroll'
 <style scoped>
   .menu-bar{
     width: 80px;
-    height: calc(100vh - 49px);
+    height: calc(100vh - 93px);
   }
   .menu-bar li{
     height: 50px;

@@ -5,3 +5,12 @@ export function getCategory(){
     url: 'category'
   })
 }
+
+export function getCategoryM(maitKey){
+  return request({
+    url:'/subcategory',
+    params:{
+      maitKey
+    }
+  })
+}

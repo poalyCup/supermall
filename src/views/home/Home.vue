@@ -162,7 +162,7 @@ export default {
     width: 100%;
     height: calc(100vh - 94px);
     position: relative;
-    z-index: 10;
+    z-index: 5;
     background-color: #fff;
     justify-content: center;
     align-items: center;

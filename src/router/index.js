@@ -50,6 +50,7 @@ Vue.use(VueRouter)
 ]
 
 const router = new VueRouter({
+  base: '/dist',
   mode: 'history',
   base: process.env.BASE_URL,
   routes
