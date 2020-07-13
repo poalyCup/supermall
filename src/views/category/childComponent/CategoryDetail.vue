@@ -48,7 +48,7 @@
   .category-detail{
     /* display: flex; */
     width: calc(100vw - 80px);
-    height: calc(100vh - 93px);
+    height: calc(var(--vh, 1vh) * 100 - 93px);
     
   }
   .flex-container{
