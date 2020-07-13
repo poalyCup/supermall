@@ -153,6 +153,7 @@
 <style scoped>
   #detail{
     height: 100vh;
+    height: calc(var(--vh, 1vh) * 100);
     position: relative;
     z-index: 9;
     background-color: #fff;
